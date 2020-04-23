@@ -1,0 +1,54 @@
+﻿<Window x:Class="AnimatedStackPanelSample.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AnimatedStackPanelSample"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="4" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Width="320" x:Name="HideableStackPanel" Margin="0,-300,0,0">
+            <StackPanel Margin="0 10 0 0">
+                <Button Height="50" Content="Admin" Style="{StaticResource MainMenuButton}"></Button>
+                <Button Height="50" Content="Customer" Style="{StaticResource MainMenuButton}"></Button>
+                <Button Height="50" Content="Stock" Style="{StaticResource MainMenuButton}"></Button>
+                <Button Height="50" Content="Product" Style="{StaticResource MainMenuButton}"></Button>
+            </StackPanel>
+        </StackPanel>
+
+        <ToggleButton x:Name="ProductToggleButton" Margin="-28 0 0 0" Grid.Column="2" Style="{StaticResource MenuToggleButton}" VerticalAlignment="Center" HorizontalAlignment="Left" Height="40" Width="40">
+            <ToggleButton.Triggers>
+                <EventTrigger RoutedEvent="ToggleButton.Checked">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <ThicknessAnimation Storyboard.TargetName="HideableStackPanel" Storyboard.TargetProperty="Margin" From="0,0,0,0" To="-300,0,0,0" DecelerationRatio=".9" Duration="0:0:1" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+                <EventTrigger RoutedEvent="ToggleButton.Unchecked">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <ThicknessAnimation Storyboard.TargetName="HideableStackPanel" Storyboard.TargetProperty="Margin" From="-320,0,0,0" To="0,0,0,0" DecelerationRatio=".9" Duration="0:0:1" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </ToggleButton.Triggers>
+        </ToggleButton>
+
+        <StackPanel Grid.Column="3">
+            <UniformGrid Columns="2"  Rows="2" Margin="30">
+                <Label Margin="10">Username</Label>
+                <TextBox  Margin="10"></TextBox>
+                <Label  Margin="10">Address</Label>
+                <TextBox  Margin="10"></TextBox>
+            </UniformGrid>
+        </StackPanel>
+    </Grid>
+</Window>
