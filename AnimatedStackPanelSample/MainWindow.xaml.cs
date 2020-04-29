@@ -17,6 +17,7 @@ namespace AnimatedStackPanelSample
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
+    /// Added Comments
     /// </summary>
     public partial class MainWindow : Window
     {
